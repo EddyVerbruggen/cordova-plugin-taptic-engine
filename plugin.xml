@@ -29,8 +29,8 @@
       </feature>
     </config-file>
 
-    <header-file src="src/ios/app/TapticEngine.h"/>
-    <source-file src="src/ios/app/TapticEngine.m"/>
+    <header-file src="src/ios/TapticEngine.h"/>
+    <source-file src="src/ios/TapticEngine.m"/>
   </platform>
 
 </plugin>
