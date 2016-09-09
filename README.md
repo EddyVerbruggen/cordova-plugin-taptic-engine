@@ -3,7 +3,7 @@ by [Eddy Verbruggen](http://twitter.com/eddyverbruggen)
 
 > __BEWARE__ This plugin uses an undocumented feature which may get your app rejected when reviewed by Apple. Once Apple releases an official API this plugin will be updated of course. [People have used this approach __without problems__ though.](http://stackoverflow.com/questions/32526868/taptic-in-ios-9)
 
-<img src="https://github.com/EddyVerbruggen/cordova-plugin-taptic-engine/blob/master/taptic-6s-plus.jpg" width="541px" height="350px"/>
+<img src="https://raw.githubusercontent.com/EddyVerbruggen/cordova-plugin-taptic-engine/master/taptic-6s-plus.jpg" width="541px" height="350px"/>
 
 ## Supported platforms
 * iPhone 6s / 6s Plus or newer
