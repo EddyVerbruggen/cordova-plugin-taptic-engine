@@ -40,14 +40,14 @@ _Bottom line: just use these awesome features and ignore the callbacks._
 
 The API names are modeled after what [Apple has called them](https://developer.apple.com/reference/uikit/uifeedbackgenerator):
 
-#### selection
+#### `selection`
 Use selection feedback generators to indicate a change in selection.
 
 ```js
 TapticEngine.selection();
 ```
 
-#### notification
+#### `notification`
 Use notification feedback generators to indicate successes, failures, and warnings.
 
 ```js
@@ -56,7 +56,7 @@ TapticEngine.notification({
 });
 ```
 
-#### impact
+#### `impact`
 Use impact feedback generators to indicate that an impact has occurred.
 For example, you might trigger impact feedback when a user interface object
 collides with something or snaps into place.
