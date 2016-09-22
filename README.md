@@ -1,12 +1,12 @@
 # Taptic Engine Cordova plugin
 by [Eddy Verbruggen](http://twitter.com/eddyverbruggen)
 
-> __BEWARE__ This plugin uses an undocumented feature which may get your app rejected when reviewed by Apple. Once Apple releases an official API this plugin will be updated of course. [People have used this approach __without problems__ though.](http://stackoverflow.com/questions/32526868/taptic-in-ios-9)
-
 <img src="https://raw.githubusercontent.com/EddyVerbruggen/cordova-plugin-taptic-engine/master/taptic-6s-plus.jpg" width="541px" height="350px"/>
 
 ## Supported platforms
-* iPhone 6s / 6s Plus or newer
+* Official API: iPhone 7 / 7 Plus or newer
+* Unofficial API: iPhone 6s / 6s Plus or newer
+* Requires Xcode 8 to build
 
 ## Installation
 
@@ -29,11 +29,53 @@ Check the [demo code](demo/index.html) for all the tricks in the book, or read o
 
 Make sure to wait for `deviceready` before using any of these functions.
 
-### `weakBoom`
+### Official API (requires at least iPhone 7)
+It's recommended to use this API, but you're limited to iPhone 7 and higher.
+As per [Apples guidelines](https://developer.apple.com/reference/uikit/uifeedbackgenerator)
+there's no runtime way to determine if the device is capable of providing haptic feedback,
+so the success callback will always be invoked. The only check I've added is for running
+iOS < 10 or on the Simulator which both simply will never work, so those invoke the error callback.
+
+_Bottom line: just use these awesome features and ignore the callbacks._
+
+The API names are modeled after what [Apple has called them](https://developer.apple.com/reference/uikit/uifeedbackgenerator):
+
+#### selection
+Use selection feedback generators to indicate a change in selection.
+
+```js
+TapticEngine.selection();
+```
+
+#### notification
+Use notification feedback generators to indicate successes, failures, and warnings.
+
+```js
+TapticEngine.notification({
+  type: "error" // success | warning | error
+});
+```
+
+#### impact
+Use impact feedback generators to indicate that an impact has occurred.
+For example, you might trigger impact feedback when a user interface object
+collides with something or snaps into place.
+
+```js
+TapticEngine.impact({
+  style: "heavy" // light | medium | heavy
+});
+```
+
+
+### Unofficial API (requires at least iPhone 6s)
+__BEWARE__ This uses an undocumented feature which may get your app rejected when reviewed by Apple. Once Apple releases an official API this plugin will be updated of course. [People have used this approach __without problems__ though.](http://stackoverflow.com/questions/32526868/taptic-in-ios-9)
+
+#### `weakBoom`
 This triggers the same effect as the 'Peek' in 'Peek & Pop', a very brief vibration.
 
 ```js
-TapticEngine.weakBoom(
+TapticEngine.unofficial.weakBoom(
   function() {
     // note that unsupported iOS devices like the simulator also end up here, at the moment
     console.log("Boomed weakly, if available.");
@@ -43,18 +85,16 @@ TapticEngine.weakBoom(
 );
 ```
 
-### `strongBoom`
+#### `strongBoom`
 This triggers the 'Pop' effect of 'Peek & Pop', which is a bit more profound than the 'Peek' effect.
 
 Codewise this is exactly the same as `weakBoom`, except for the function name of course.
 
-### `burst`
+#### `burst`
 This triggers the 'Nope' effect you get when fi. force touching a home icon which doesn't have any action. It's a short burst of 3-ish 'weak booms'.
 
 Codewise this is exactly the same as `weakBoom` and `strongBoom`, except for the function name of course.
 
 ## Changelog
-* 1.0.0  Initial release
-
-## Future work
-* Implement the official API. If any. Ever.
+* 2.0.0  Added official API for iPhone 7. Moved the old API to `TapticEngine.unofficial.*`. Requires Xcode 8 to build.
+* 1.0.0  Initial release, unofficial API only. Compatible with any Xcode version.

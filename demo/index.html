@@ -12,30 +12,67 @@
     <p class="event listening">Connecting to Device</p>
     <p class="event received">Device is Ready</p>
 
+    <h3>Unofficial API (iPhone >= 6s)</h3>
     <button ontouchstart="weakBoom()">weak boom ('Peek')</button><br/><br/>
     <button ontouchstart="strongBoom()">strong boom ('Pop')</button><br/><br/>
     <button ontouchstart="burst()">burst ('Nope!')</button><br/><br/>
+
+    <h3>Official API (iPhone >= 7)</h3>
+    <button ontouchstart="notification('error')">notification</button><br/><br/>
+    <button ontouchstart="selection()">selection</button><br/><br/>
+    <button ontouchstart="impact('heavy')">impact</button><br/><br/>
   </div>
 </div>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script>
+
+  function onSuccess() {
+    console.log("OK");
+  }
+
+  function onError(msg) {
+    alert("Failed: " + msg);
+  }
+
   function weakBoom() {
-      if (window.TapticEngine) {
-          TapticEngine.weakBoom();
-      }
+    if (window.TapticEngine) {
+      TapticEngine.unofficial.weakBoom();
+    }
   }
 
   function strongBoom() {
-      if (window.TapticEngine) {
-          TapticEngine.strongBoom();
-      }
+    if (window.TapticEngine) {
+      TapticEngine.unofficial.strongBoom();
+    }
   }
 
   function burst() {
-      if (window.TapticEngine) {
-          TapticEngine.burst();
-      }
+    if (window.TapticEngine) {
+      TapticEngine.unofficial.burst();
+    }
+  }
+
+  function notification(type) {
+    if (window.TapticEngine) {
+      TapticEngine.notification({
+        type: type
+      }, onSuccess, onError);
+    }
+  }
+
+  function selection() {
+    if (window.TapticEngine) {
+      TapticEngine.selection(onSuccess, onError);
+    }
+  }
+
+  function impact(style) {
+    if (window.TapticEngine) {
+      TapticEngine.impact({
+        style: style
+      }, onSuccess, onError);
+    }
   }
 </script>
 </body>

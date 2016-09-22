@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <plugin
     id="cordova-plugin-taptic-engine"
-    version="1.0.0"
+    version="2.0.0"
     xmlns="http://apache.org/cordova/ns/plugins/1.0">
 
   <name>Taptic Engine</name>
@@ -10,7 +10,7 @@
 
   <description>Use Apple's Taptic Engine to vibrate your iPhone 6s (or up) in a variety of ways.</description>
 
-  <keywords>Taptic Engine, Taptic, Vibration</keywords>
+  <keywords>Taptic Engine, Haptic, Haptic Feedback, Taptic, Taptic Feedback, Vibrate, Vibration</keywords>
 
   <license>MIT</license>
 
@@ -31,6 +31,9 @@
 
     <header-file src="src/ios/TapticEngine.h"/>
     <source-file src="src/ios/TapticEngine.m"/>
+
+    <!-- required only for the unofficial API -->
+    <framework src="AudioToolbox.framework" weak="true" />
   </platform>
 
 </plugin>
