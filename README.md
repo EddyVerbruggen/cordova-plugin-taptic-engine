@@ -69,7 +69,8 @@ TapticEngine.impact({
 
 
 ### Unofficial API (requires at least iPhone 6s)
-__BEWARE__ This uses an undocumented feature which may get your app rejected when reviewed by Apple. Once Apple releases an official API this plugin will be updated of course. [People have used this approach __without problems__ though.](http://stackoverflow.com/questions/32526868/taptic-in-ios-9)
+__BEWARE__ This uses an undocumented feature which may get your app rejected when reviewed by Apple.
+[People have used this approach __without problems__ though.](http://stackoverflow.com/questions/32526868/taptic-in-ios-9)
 
 #### `weakBoom`
 This triggers the same effect as the 'Peek' in 'Peek & Pop', a very brief vibration.
