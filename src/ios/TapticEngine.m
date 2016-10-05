@@ -19,66 +19,60 @@ BOOL isSimulator = NO;
   // availability otherwise, it's also discouraged to check for availability:
   // https://developer.apple.com/reference/uikit/uifeedbackgenerator
 
-  [self.commandDelegate runInBackground:^{
-    UINotificationFeedbackGenerator *generator = [UINotificationFeedbackGenerator new];
-    if (generator == nil || isSimulator) {
-      [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unsupported Operating System"] callbackId:command.callbackId];
-      return;
-    }
+  UINotificationFeedbackGenerator *generator = [UINotificationFeedbackGenerator new];
+  if (generator == nil || isSimulator) {
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unsupported Operating System"] callbackId:command.callbackId];
+    return;
+  }
 
-    NSDictionary* options = command.arguments[0];
-    NSString *type = options[@"type"];
-    UINotificationFeedbackType feedbackType = UINotificationFeedbackTypeSuccess; // default
-    if (type != nil) {
-      if ([type isEqualToString:@"warning"]) {
-        feedbackType = UINotificationFeedbackTypeWarning;
-      } else if ([type isEqualToString:@"error"]) {
-        feedbackType = UINotificationFeedbackTypeError;
-      }
+  NSDictionary* options = command.arguments[0];
+  NSString *type = options[@"type"];
+  UINotificationFeedbackType feedbackType = UINotificationFeedbackTypeSuccess; // default
+  if (type != nil) {
+    if ([type isEqualToString:@"warning"]) {
+      feedbackType = UINotificationFeedbackTypeWarning;
+    } else if ([type isEqualToString:@"error"]) {
+      feedbackType = UINotificationFeedbackTypeError;
     }
+  }
 
-    [generator notificationOccurred:feedbackType];
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
-  }];
+  [generator notificationOccurred:feedbackType];
+  [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
 
 - (void) selection:(CDVInvokedUrlCommand *)command
 {
-  [self.commandDelegate runInBackground:^{
-    UISelectionFeedbackGenerator *generator = [UISelectionFeedbackGenerator new];
-    if (generator == nil || isSimulator) {
-      [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unsupported Operating System"] callbackId:command.callbackId];
-      return;
-    }
+  UISelectionFeedbackGenerator *generator = [UISelectionFeedbackGenerator new];
+  if (generator == nil || isSimulator) {
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unsupported Operating System"] callbackId:command.callbackId];
+    return;
+  }
 
-    [generator selectionChanged];
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
-  }];
+  [generator selectionChanged];
+  [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
 
 - (void) impact:(CDVInvokedUrlCommand *)command
 {
-  [self.commandDelegate runInBackground:^{
-    NSDictionary* options = command.arguments[0];
-    NSString *style = options[@"style"];
-    UIImpactFeedbackStyle feedbackStyle = UIImpactFeedbackStyleMedium; // default
-    if (style != nil) {
-      if ([style isEqualToString:@"light"]) {
-        feedbackStyle = UIImpactFeedbackStyleLight;
-      } else if ([style isEqualToString:@"heavy"]) {
-        feedbackStyle = UIImpactFeedbackStyleHeavy;
-      }
+  NSDictionary* options = command.arguments[0];
+  NSString *style = options[@"style"];
+  UIImpactFeedbackStyle feedbackStyle = UIImpactFeedbackStyleMedium; // default
+  if (style != nil) {
+    if ([style isEqualToString:@"light"]) {
+      feedbackStyle = UIImpactFeedbackStyleLight;
+    } else if ([style isEqualToString:@"heavy"]) {
+      feedbackStyle = UIImpactFeedbackStyleHeavy;
     }
+  }
 
-    UIImpactFeedbackGenerator *generator = [[UIImpactFeedbackGenerator alloc] initWithStyle:feedbackStyle];
-    if (generator == nil || isSimulator) {
-      [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unsupported Operating System"] callbackId:command.callbackId];
-      return;
-    }
+  UIImpactFeedbackGenerator *generator = [[UIImpactFeedbackGenerator alloc] initWithStyle:feedbackStyle];
+  if (generator == nil || isSimulator) {
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unsupported Operating System"] callbackId:command.callbackId];
+    return;
+  }
 
-    [generator impactOccurred];
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
-  }];
+  [generator impactOccurred];
+  [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
 
 #pragma mark - Unofficial API (for iPhone 6s and up)
