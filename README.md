@@ -97,5 +97,6 @@ This triggers the 'Nope' effect you get when fi. force touching a home icon whic
 Codewise this is exactly the same as `weakBoom` and `strongBoom`, except for the function name of course.
 
 ## Changelog
+* 2.0.1  A crash was fixed for iPhone 7 devices (official API), thanks [Max Lynch](https://github.com/mlynch)!
 * 2.0.0  Added official API for iPhone 7. Moved the old API to `TapticEngine.unofficial.*`. Requires Xcode 8 to build.
 * 1.0.0  Initial release, unofficial API only. Compatible with any Xcode version.
