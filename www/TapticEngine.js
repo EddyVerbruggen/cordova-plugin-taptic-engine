@@ -35,9 +35,11 @@ TapticEngine.prototype.impact = function (options, onSuccess, onFail) {
 TapticEngine.prototype.gestureSelectionStart = function (onSuccess, onFail) {
   exec(onSuccess, onFail, "TapticEngine", "gestureSelectionStart", []);
 };
+
 TapticEngine.prototype.gestureSelectionChanged = function (onSuccess, onFail) {
   exec(onSuccess, onFail, "TapticEngine", "gestureSelectionChanged", []);
 };
+
 TapticEngine.prototype.gestureSelectionEnd = function (onSuccess, onFail) {
   exec(onSuccess, onFail, "TapticEngine", "gestureSelectionEnd", []);
 };

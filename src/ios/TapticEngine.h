@@ -7,6 +7,10 @@
 - (void) selection:(CDVInvokedUrlCommand*)command;
 - (void) impact:(CDVInvokedUrlCommand*)command;
 
+- (void) gestureSelectionStart:(CDVInvokedUrlCommand*)command;
+- (void) gestureSelectionChanged:(CDVInvokedUrlCommand*)command;
+- (void) gestureSelectionEnd:(CDVInvokedUrlCommand*)command;
+
 // Unofficial API
 - (void) weakBoom:(CDVInvokedUrlCommand*)command;
 - (void) strongBoom:(CDVInvokedUrlCommand*)command;

@@ -62,7 +62,7 @@ BOOL isSimulator = NO;
  */
 - (void) gestureSelectionStart:(CDVInvokedUrlCommand *)command
 {
-    if(!self.selectionGenerator) {
+    if (!self.selectionGenerator) {
         self.selectionGenerator = [UISelectionFeedbackGenerator new];
         if (self.selectionGenerator == nil || isSimulator) {
             [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unsupported Operating System"] callbackId:command.callbackId];
@@ -71,7 +71,6 @@ BOOL isSimulator = NO;
     }
 
     [self.selectionGenerator prepare];
-
 
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
@@ -82,8 +81,8 @@ BOOL isSimulator = NO;
  */
 - (void) gestureSelectionChanged:(CDVInvokedUrlCommand *)command
 {
-    if(!self.selectionGenerator) {
-        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unsupported Operating System"] callbackId:command.callbackId];
+    if (!self.selectionGenerator) {
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Invoke gestureSelectionStart first"] callbackId:command.callbackId];
         return;
     }
 

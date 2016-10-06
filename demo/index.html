@@ -12,15 +12,20 @@
     <p class="event listening">Connecting to Device</p>
     <p class="event received">Device is Ready</p>
 
-    <h3>Unofficial API (iPhone >= 6s)</h3>
+    <h2>Unofficial API (iPhone >= 6s)</h2>
     <button ontouchstart="weakBoom()">weak boom ('Peek')</button><br/><br/>
     <button ontouchstart="strongBoom()">strong boom ('Pop')</button><br/><br/>
     <button ontouchstart="burst()">burst ('Nope!')</button><br/><br/>
 
-    <h3>Official API (iPhone >= 7)</h3>
+    <h2>Official API (iPhone >= 7)</h2>
     <button ontouchstart="notification('error')">notification</button><br/><br/>
     <button ontouchstart="selection()">selection</button><br/><br/>
     <button ontouchstart="impact('heavy')">impact</button><br/><br/>
+
+    <h3>Gesture selection</h3>
+    <button ontouchstart="gestureSelectionStart()">start</button>&nbsp;
+    <button ontouchstart="gestureSelectionChanged()">changes</button>&nbsp;
+    <button ontouchstart="gestureSelectionEnd()">end</button><br/><br/>
   </div>
 </div>
 <script type="text/javascript" src="cordova.js"></script>
@@ -74,6 +79,25 @@
       }, onSuccess, onError);
     }
   }
+
+  function gestureSelectionStart() {
+    if (window.TapticEngine) {
+      TapticEngine.gestureSelectionStart(onSuccess, onError);
+    }
+  }
+
+  function gestureSelectionChanged() {
+    if (window.TapticEngine) {
+      TapticEngine.gestureSelectionChanged(onSuccess, onError);
+    }
+  }
+
+  function gestureSelectionEnd() {
+    if (window.TapticEngine) {
+      TapticEngine.gestureSelectionEnd(onSuccess, onError);
+    }
+  }
+
 </script>
 </body>
 </html>

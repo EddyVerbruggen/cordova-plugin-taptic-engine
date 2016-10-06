@@ -67,6 +67,29 @@ TapticEngine.impact({
 });
 ```
 
+#### `gestureSelection[start | changed | end]`
+The functions above are great for one-time events, not so much for gestures.
+Say for instance you want to tie this plugin to a range slider, then you can
+'start' the selection first, invoke 'changed' upon changes in the range (there may
+be many during one gesture), then 'end' when the slider changes are done.
+
+Tell the taptic engine that a gesture for a selection change is starting.
+
+```js
+TapticEngine.gestureSelectionStart();
+```
+
+Tell the taptic engine that a selection changed during a gesture.
+
+```js
+TapticEngine.gestureSelectionChanged();
+```
+
+Tell the taptic engine we are done with a gesture. This needs to be called lest resources are not properly recycled.
+
+```js
+TapticEngine.gestureSelectionEnd();
+```
 
 ### Unofficial API (requires at least iPhone 6s)
 __BEWARE__ This uses an undocumented feature which may get your app rejected when reviewed by Apple.
@@ -97,6 +120,7 @@ This triggers the 'Nope' effect you get when fi. force touching a home icon whic
 Codewise this is exactly the same as `weakBoom` and `strongBoom`, except for the function name of course.
 
 ## Changelog
+* 2.1.0  [Max Lynch](https://github.com/mlynch) added `gestureSelection*` methods. See the doc above why those matter!
 * 2.0.1  A crash was fixed for iPhone 7 devices (official API), thanks [Max Lynch](https://github.com/mlynch)!
 * 2.0.0  Added official API for iPhone 7. Moved the old API to `TapticEngine.unofficial.*`. Requires Xcode 8 to build.
 * 1.0.0  Initial release, unofficial API only. Compatible with any Xcode version.
