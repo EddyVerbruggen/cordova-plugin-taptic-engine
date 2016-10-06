@@ -40,6 +40,10 @@ BOOL isSimulator = NO;
   [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
 
+/**
+ * Trigger selection feedback in one burst, useful for non-gesture based
+ * selection feedback.
+ */
 - (void) selection:(CDVInvokedUrlCommand *)command
 {
   UISelectionFeedbackGenerator *generator = [UISelectionFeedbackGenerator new];
@@ -50,6 +54,54 @@ BOOL isSimulator = NO;
 
   [generator selectionChanged];
   [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+}
+
+
+/**
+ * Used to prepare a taptic event for future taptic events in a gesture.
+ */
+- (void) gestureSelectionStart:(CDVInvokedUrlCommand *)command
+{
+    if(!self.selectionGenerator) {
+        self.selectionGenerator = [UISelectionFeedbackGenerator new];
+        if (self.selectionGenerator == nil || isSimulator) {
+            [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unsupported Operating System"] callbackId:command.callbackId];
+            return;
+        }
+    }
+
+    [self.selectionGenerator prepare];
+
+
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+}
+
+/**
+ * While in a gesture, we can efficiently trigger a selection taptic event.
+* gestureSelectionStart should be called first.
+ */
+- (void) gestureSelectionChanged:(CDVInvokedUrlCommand *)command
+{
+    if(!self.selectionGenerator) {
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unsupported Operating System"] callbackId:command.callbackId];
+        return;
+    }
+
+    [self.selectionGenerator selectionChanged];
+    [self.selectionGenerator prepare];
+
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+}
+
+/**
+ * Called at the end of a gesture to clean up the taptic reference.
+ */
+- (void) gestureSelectionEnd:(CDVInvokedUrlCommand *)command
+{
+    // Free up the selection generator
+    self.selectionGenerator = nil;
+
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
 
 - (void) impact:(CDVInvokedUrlCommand *)command

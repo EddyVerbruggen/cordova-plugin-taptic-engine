@@ -12,4 +12,8 @@
 - (void) strongBoom:(CDVInvokedUrlCommand*)command;
 - (void) burst:(CDVInvokedUrlCommand*)command;
 
+// This property stores a selection feedback generator during
+// gestures, as per https://developer.apple.com/reference/uikit/uifeedbackgenerator#2555399
+@property UISelectionFeedbackGenerator *selectionGenerator;
+
 @end
