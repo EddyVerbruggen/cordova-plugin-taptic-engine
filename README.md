@@ -3,10 +3,13 @@ by [Eddy Verbruggen](http://twitter.com/eddyverbruggen)
 
 <img src="https://raw.githubusercontent.com/EddyVerbruggen/cordova-plugin-taptic-engine/master/taptic-6s-plus.jpg" width="541px" height="350px"/>
 
+## Try before you "buy"
+The awesome [Untappd](https://itunes.apple.com/nl/app/untappd-discover-beer/id449141888?mt=8) app has a bunch of haptic feedback, powered by this plugin! 🍻
+
 ## Supported platforms
 * Official API: iPhone 7 / 7 Plus or newer
 * Unofficial API: iPhone 6s / 6s Plus or newer
-* Requires Xcode 8 to build
+* Requires Xcode 8 or newer to build
 
 ## Installation
 
