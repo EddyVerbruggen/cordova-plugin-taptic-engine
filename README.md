@@ -66,7 +66,7 @@ collides with something or snaps into place.
 
 ```js
 TapticEngine.impact({
-  style: "heavy" // light | medium | heavy | rigid | soft
+  style: "heavy" // light | medium | heavy | rigid (iOS 13+) | soft (iOS 13+)
 });
 ```
 

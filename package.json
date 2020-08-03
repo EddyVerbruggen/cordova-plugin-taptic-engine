@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-taptic-engine",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Use Apple's Taptic Engine to vibrate your iPhone 6s (or up) in a variety of ways.",
   "cordova": {
     "id": "cordova-plugin-taptic-engine",
