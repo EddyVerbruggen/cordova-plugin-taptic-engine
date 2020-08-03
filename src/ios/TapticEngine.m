@@ -113,6 +113,10 @@ BOOL isSimulator = NO;
       feedbackStyle = UIImpactFeedbackStyleLight;
     } else if ([style isEqualToString:@"heavy"]) {
       feedbackStyle = UIImpactFeedbackStyleHeavy;
+    } else if ([style isEqualToString:@"rigid"]) {
+      feedbackStyle = UIImpactFeedbackStyleRigid;
+    } else if ([style isEqualToString:@"soft"]) {
+      feedbackStyle = UIImpactFeedbackStyleSoft;
     }
   }
 
